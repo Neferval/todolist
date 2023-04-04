@@ -1,22 +1,40 @@
-const app = Vue.createApp({
-    data() {
+const vm = Vue.createApp({
+  data() {
       return {
-        todos: [],
-        newTodo: ''
+          todo: "",
+          todoList: [],
+          index:'',
+          count:0,
+          mode:0,
+          key:'',
       }
-    },
-    methods: {
-      addTodo() {
-        if (this.newTodo !== '') {
-          this.todos.push(this.newTodo);
-          this.newTodo = '';
-        }
+  },
+  methods: {
+      ajouter() {
+          this.todoList.push({ id: this.count++, list: this.todo });
+          this.todo = '';
+          
       },
-      removeTodo(index) {
-        this.todos.splice(index, 1);
+      supp(index){
+          console.log(index);
+          this.todoList.splice(index,1);
+      },
+      modif(index){
+          this.todo=this.todoList[index].list;
+          this.mode=1;
+          this.key=index;
+          document.getElementById("entrer").style.backgroundColor="red";
+          document.getElementById("entrer").style.color="yellow";
+      },
+      valider(){
+          this.todoList.splice(this.key,1,{ id: this.key, list: this.todo });
+          this.key='';
+          this.mode=0;
+          this.todo='';
+          document.getElementById("entrer").style.backgroundColor="white";
+          document.getElementById("entrer").style.color="black";
       }
-    }
-  });
-  
-  app.mount('#app');
-  
+
+  }
+})
+vm.mount('#app')

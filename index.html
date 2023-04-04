@@ -5,22 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
-    <div id="app">
-        <h1>Ma To-Do list</h1>
-        <input type="text" v-model="newTodo" @keyup.enter="addTodo">
-        <button @click="addTodo(index)">+</button>
-        <ul>
-          <li v-for="(todo, index) in todos">
-            {{ todo }}
-            <button @click="removeTodo(index)">Supprimer</button>
-          </li>
-        </ul>
-      </div>
+  <h1>Ma To-Do List</h1>
+
+  <div id="app">
+      <input id="entrer" type="text" v-model="todo"  > 
+      <button @click="ajouter();" v-if="mode==0"><i class="fas fa-plus-circle"></i></button>
+      <button @click="valider();" v-if="mode==1"><i class="fas fa-check-circle"></i></button>
+      <p  v-for="(elt,key) in todoList">
+              {{ elt.list}}
+              <button @click="supp(key);"><i class="fas fa-trash-alt"></i></button>
+              <button @click="modif(key);"><i class="fas fa-pen-nib"></i></button>        
+      </p>
+  </div>
+        
+
     
 
  <script src="script.js"></script>   
 </body>
-</html>
+</html> 
